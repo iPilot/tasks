@@ -12,6 +12,7 @@ namespace SimQLTask
 		static void Main(string[] args)
 		{
 			var json = Console.In.ReadToEnd();
+			//var json = "{\"data\":{\"empty\":{},\"ab\":0,\"x1\":1,\"x2\":2,\"y1\":{\"y2\":{\"y3\":3}}},\"queries\":[\"empty\",\"xyz\",\"x1.x2\",\"y1.y2.z\",\"empty.foobar\"]}";
 
 			foreach (var result in ExecuteQueries(json))
 				Console.WriteLine(result);
@@ -36,6 +37,9 @@ namespace SimQLTask
 
 	        foreach (var part in queryParts)
 	        {
+				if (currentPart != null && currentPart.Type != JTokenType.Object)
+					return string.Empty;
+
 	            currentPart = currentPart?[part] ?? data[part];
 
 				if(currentPart == null)
@@ -44,12 +48,24 @@ namespace SimQLTask
 				}
 	        }
 
-	        return currentPart.Value<double>().ToString(CultureInfo.InvariantCulture);
+			return ConvertValue(currentPart);
 	    }
 
 	    public static string FormatOutput(string query, string queryValue)
 	    {
 	        return $"{query} = {queryValue}";
 	    }
+
+		public static string ConvertValue(JToken token)
+		{
+			try
+			{
+				return token.Value<double>().ToString(CultureInfo.InvariantCulture);
+			}
+			catch (InvalidCastException)
+			{
+				return string.Empty;
+			}
+		}
 	}
 }
