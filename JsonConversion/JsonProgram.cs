@@ -15,7 +15,7 @@ namespace JsonConversion
 			var v2obj = JsonConvert.DeserializeObject<V2Object>(json);
 			var v3obj = new VersionConverter().Convert(v2obj);
 			
-			Console.Write(JsonConvert.SerializeObject(v3obj, Formatting.Indented));
+			Console.Write(JsonConvert.SerializeObject(v3obj, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
 		}
 	}
 

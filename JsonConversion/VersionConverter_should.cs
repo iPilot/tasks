@@ -85,6 +85,7 @@ namespace JsonConversion
 				}
 			};
 			expteted.Should().BeEquivalentTo(v3obj);
+			Console.WriteLine(JsonConvert.SerializeObject(v3obj, Formatting.Indented, new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore}));
 		}
 	}
 }
