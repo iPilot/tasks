@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EvalTask
 {
-	interface IEvaluator
+	public interface IEvaluator
 	{
 		double Evaluate(string expression);
 	}
