@@ -4,6 +4,6 @@
 	{
 		public string Name { get; set; }
 		public string Price { get; set; }
-		public string Count { get; set; }
+		public long Count { get; set; }
 	}
 }

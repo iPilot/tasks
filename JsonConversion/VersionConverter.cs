@@ -6,6 +6,7 @@ namespace JsonConversion
 	{
 		public V3Object Convert(V2Object obj)
 		{
+			var cacl = new PriceCalculator(new Evaluator());
 			var result = new V3Object
 			{
 				version = "3",
@@ -14,13 +15,12 @@ namespace JsonConversion
 			{
 				result.products.Add(new V3Product
 				{
-					id = item.Key,
+					id = long.Parse(item.Key),
 					name = item.Value.Name,
-					price = item.Value.Price,
+					price = cacl.PrepateJson(item.Value.Price, obj.constants),
 					count = item.Value.Count
 				});
 			}
-			new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
 			return result;
 		}
 	}

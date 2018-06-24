@@ -28,18 +28,15 @@ namespace JsonConversion
 			_evaluator = evaluator;
 		}
 
-		public void PrepateJson(V3Object v3Object, Dictionary<string, string> constants)
+		public double PrepateJson(string input, Dictionary<string, string> constants)
 		{
-			if (constants == null)
-				return;
-			foreach (var product in v3Object.products)
-			{
-				product.price = _evaluator.Evaluate(ChangeSymbols(product.price, constants)).ToString();
-			}
+			return _evaluator.Evaluate(ChangeSymbols(input, constants));
 		}
 
 		private string ChangeSymbols(string input, Dictionary<string, string> constants)
 		{
+			if (constants == null)
+				return input;
 			foreach (var constant in constants)
 			{
 				input = input.Replace(constant.Key, constant.Value);
