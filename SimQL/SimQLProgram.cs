@@ -20,9 +20,30 @@ namespace SimQLTask
 		{
 			var jObject = JObject.Parse(json);
 			var data = (JObject)jObject["data"];
-			var queries = jObject["queries"].ToObject<string[]>();
-			// TODO
-			return queries.Select(q => "TODO");
+			var queries = jObject["queries"].ToObject<HashSet<string>>();
+
+		    foreach (var query in queries)
+		    {
+		        yield return FormatOutput(query, GetPathValue(query, data));
+		    }
 		}
+
+	    public static string GetPathValue(string query, JObject data)
+	    {
+	        var queryParts = query.Split('.');
+	        JToken currentPart = null;
+
+	        foreach (var part in queryParts)
+	        {
+	            currentPart = currentPart?[part] ?? data[part];
+	        }
+
+	        return currentPart.Value<double>().ToString(CultureInfo.InvariantCulture);
+	    }
+
+	    public static string FormatOutput(string query, string queryValue)
+	    {
+	        return $"{query} = {queryValue}";
+	    }
 	}
 }
