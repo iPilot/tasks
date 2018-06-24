@@ -30,6 +30,8 @@ namespace JsonConversion
 
 		public void PrepateJson(V3Object v3Object, Dictionary<string, string> constants)
 		{
+			if (constants == null)
+				return;
 			foreach (var product in v3Object.products)
 			{
 				product.price = _evaluator.Evaluate(ChangeSymbols(product.price, constants)).ToString();
