@@ -12,25 +12,35 @@ namespace SimQLTask
 		static void Main(string[] args)
 		{
 			var json = Console.In.ReadToEnd();
-			//var json = "{\"data\":{\"empty\":{},\"ab\":0,\"x1\":1,\"x2\":2,\"y1\":{\"y2\":{\"y3\":3}}},\"queries\":[\"empty\",\"xyz\",\"x1.x2\",\"y1.y2.z\",\"empty.foobar\"]}";
-
+			//var json = "{\"data\":{\"empty\":{},\"ab\":0,\"x1\":1,\"x2\":2,\"y1\":{\"y2\":{\"y3\":3}}},\"qqueries\":[\"empty\",\"xyz\",\"x1.x2\",\"y1.y2.z\",\"empty.foobar\"]}";
 			foreach (var result in ExecuteQueries(json))
 				Console.WriteLine(result);
 		}
 
 		public static IEnumerable<string> ExecuteQueries(string json)
 		{
-			var jObject = JObject.Parse(json);
-			var data = (JObject)jObject["data"];
-			var queries = jObject["queries"].ToObject<string[]>();
+			var jObject = ParseJson(json);
 
-		    foreach (var query in queries)
+			if(jObject == null)
+			{
+				yield break;
+			}
+
+			var data = jObject["data"];
+			var queries = jObject["queries"];
+
+			if (data == null || queries == null)
+			{
+				yield break;
+			}
+
+		    foreach (var query in queries.ToObject<string[]>())
 		    {
 		        yield return FormatOutput(query, GetPathValue(query, data));
 		    }
 		}
 
-	    public static string GetPathValue(string query, JObject data)
+	    public static string GetPathValue(string query, JToken data)
 	    {
 	        var queryParts = query.Split('.');
 	        JToken currentPart = null;
@@ -66,6 +76,19 @@ namespace SimQLTask
 			{
 				return string.Empty;
 			}
+		}
+
+		public static JObject ParseJson(string inputMessage)
+		{
+			try
+			{
+				return JObject.Parse(inputMessage);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+
 		}
 	}
 }
