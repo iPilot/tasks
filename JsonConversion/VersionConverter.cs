@@ -4,15 +4,15 @@
 	{
 		public V3Object Convert(V2Object obj)
 		{
-			var result = new V3Object {	Version = "3" };
+			var result = new V3Object {	version = "3" };
 			foreach (var item in obj.Products)
 			{
-				result.Products.Add(new V3Product
+				result.products.Add(new V3Product
 				{
-					Id = long.Parse(item.Key),
-					Name = item.Value.Name,
-					Price = item.Value.Price,
-					Count = item.Value.Count
+					id = long.Parse(item.Key),
+					name = item.Value.Name,
+					price = item.Value.Price,
+					count = item.Value.Count
 				});
 			}
 			return result;

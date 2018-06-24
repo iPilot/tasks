@@ -2,9 +2,9 @@
 {
 	internal class V3Product
 	{
-		public long Id { get; set; }
-		public string Name { get; set; }
-		public double Price { get; set; }
-		public int Count { get; set; }
+		public long id { get; set; }
+		public string name { get; set; }
+		public double price { get; set; }
+		public int count { get; set; }
 	}
 }
