@@ -12,7 +12,7 @@ namespace SimQLTask
 		static void Main(string[] args)
 		{
 			var json = Console.In.ReadToEnd();
-			//var json = "{\"data\":{\"empty\":{},\"ab\":0,\"x1\":1,\"x2\":2,\"y1\":{\"y2\":{\"y3\":3}}},\"qqueries\":[\"empty\",\"xyz\",\"x1.x2\",\"y1.y2.z\",\"empty.foobar\"]}";
+			//var json = "{\"data\":{\"empty\":{},\"ab\":0,\"x1\":1,\"x2\":2,\"y1\":{\"y2\":{\"y3\":3}}},\"queries\":[\"empty\",\"xyz\",\"x1.x2\",\"y1.y2.z\",\"empty.foobar\"]}";
 			foreach (var result in ExecuteQueries(json))
 				Console.WriteLine(result);
 		}
@@ -63,7 +63,7 @@ namespace SimQLTask
 
 	    public static string FormatOutput(string query, string queryValue)
 	    {
-	        return $"{query} = {queryValue}";
+	        return $"{query}" + (string.IsNullOrEmpty(queryValue) ? "" : $" = {queryValue}");
 	    }
 
 		public static string ConvertValue(JToken token)
