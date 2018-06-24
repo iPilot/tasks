@@ -1,0 +1,15 @@
+﻿{  
+   "version":"2",
+   "products":{  
+      "1":{  
+         "name":"product-name",
+         "price":"12",
+         "count":100,
+         "size":[  
+            12,
+            130,
+            131
+         ]
+      }
+   }
+}
