@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace EvalTask
 {
@@ -7,8 +8,11 @@ namespace EvalTask
 		static void Main(string[] args)
 		{
 			string input = Console.In.ReadToEnd();
-			string output = "TODO";
-			Console.WriteLine(output);
+			var parsedString = input.Replace(',', '.');
+			string output = new Evaluator().Evaluate(parsedString).ToString();
+			Console.WriteLine(output, CultureInfo.InvariantCulture);
 		}
+
 	}
+
 }
