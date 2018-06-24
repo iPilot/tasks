@@ -25,6 +25,8 @@ namespace EvalTask
 
 		public double Evaluate(string expression)
 		{
+			//expression.Replace('\'', )
+
 			CompilerResults result = csharpProvider.CompileAssemblyFromSource(compilerParameters,
 				string.Concat(baseCodeBegin, expression, baseCodeEnd));
 			if (result.Errors.HasErrors)

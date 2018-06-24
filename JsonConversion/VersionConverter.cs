@@ -20,7 +20,7 @@ namespace JsonConversion
 					count = item.Value.Count
 				});
 			}
-			new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
+		//	new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
 			return result;
 		}
 	}
