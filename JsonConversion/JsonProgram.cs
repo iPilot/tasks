@@ -1,17 +1,18 @@
 ﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 
 namespace JsonConversion
 {
+
 	class JsonProgram
-	{
+	{ 
 		static void Main()
 		{
 			string json = Console.In.ReadToEnd();
-			JObject v2 = JObject.Parse(json);
-			//...
-			var v3 = "{ 'version':'3', 'products': 'TODO' }";
-			Console.Write(v3);
+			var v2obj = JsonConvert.DeserializeObject<V2Object>(json);
+			var v3obj = new VersionConverter().Convert(v2obj);
+			Console.Write(JsonConvert.SerializeObject(v3obj, Formatting.Indented));
 		}
 	}
 }
