@@ -35,6 +35,22 @@ namespace JsonConversion
 			var v3obj = new VersionConverter().Convert(v2obj);
 			Assert.AreEqual(v3obj.version, "3");
 			Assert.AreEqual(v3obj.products.First().price, "10");
+			Assert.AreEqual(v3obj.products.First().count, "100");
+			Assert.AreEqual(v3obj.products.First().id, "1");
+			Assert.AreEqual(v3obj.products.First().name, "product-name");
+		}
+
+		[Test]
+		public void Test2()
+		{
+			var v2json = File.ReadAllText(@"C:\Users\User3\Downloads\JsonSamples1\1.v2.json");
+			var v2obj = JsonConvert.DeserializeObject<V2Object>(v2json);
+			var v3obj = new VersionConverter().Convert(v2obj);
+			Assert.AreEqual(v3obj.version, "3");
+			Assert.AreEqual(v3obj.products.First().price, "10");
+			Assert.AreEqual(v3obj.products.First().count, 100);
+			Assert.AreEqual(v3obj.products.First().id, 1);
+			Assert.AreEqual(v3obj.products.First().name, "product-name");
 		}
 	}
 }

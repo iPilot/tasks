@@ -14,13 +14,13 @@ namespace JsonConversion
 			{
 				result.products.Add(new V3Product
 				{
-					id = long.Parse(item.Key),
+					id = item.Key,
 					name = item.Value.Name,
 					price = item.Value.Price,
 					count = item.Value.Count
 				});
 			}
-		//	new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
+			new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
 			return result;
 		}
 	}
