@@ -12,6 +12,7 @@ namespace SimQLTask
 		static void Main(string[] args)
 		{
 			var json = Console.In.ReadToEnd();
+
 			foreach (var result in ExecuteQueries(json))
 				Console.WriteLine(result);
 		}
@@ -20,7 +21,7 @@ namespace SimQLTask
 		{
 			var jObject = JObject.Parse(json);
 			var data = (JObject)jObject["data"];
-			var queries = jObject["queries"].ToObject<HashSet<string>>();
+			var queries = jObject["queries"].ToObject<string[]>();
 
 		    foreach (var query in queries)
 		    {
@@ -36,6 +37,11 @@ namespace SimQLTask
 	        foreach (var part in queryParts)
 	        {
 	            currentPart = currentPart?[part] ?? data[part];
+
+				if(currentPart == null)
+				{
+					return string.Empty;
+				}
 	        }
 
 	        return currentPart.Value<double>().ToString(CultureInfo.InvariantCulture);

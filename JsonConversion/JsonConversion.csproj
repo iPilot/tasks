@@ -56,21 +56,23 @@
     <Compile Include="IConverter.cs" />
     <Compile Include="JsonProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V2Object.cs" />
-    <Compile Include="V2Product.cs" />
-    <Compile Include="V3Object.cs" />
-    <Compile Include="V3Product.cs" />
+    <Compile Include="models\V2Object.cs" />
+    <Compile Include="models\V2Product.cs" />
+    <Compile Include="models\V3Object.cs" />
+    <Compile Include="models\V3Product.cs" />
     <Compile Include="VersionConverter.cs" />
     <Compile Include="VersionConverter_should.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="1.v2.json">
+    <None Include="data\1.v2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="1.v3.json">
+    <None Include="data\1.v3.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
+    <None Include="data\2.v2.json" />
+    <None Include="data\2.v3.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
