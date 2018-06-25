@@ -23,9 +23,9 @@ namespace JsonConversion
 
 		private Dimensions GetDimensions(double[] arr)
 		{
-			if (arr == null || arr.Any())
+			if (arr == null || !arr.Any())
 				return null;
-			return new Dimensions {w = arr[0], l = arr[2], h = arr[1]};
+			return new Dimensions { Width = arr[0], Length = arr[2], Height = arr[1] };
 		}
 	}
 }

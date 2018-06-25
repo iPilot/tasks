@@ -21,20 +21,26 @@ namespace EvalTask
 
 			codeFormat = @"
 				using System;
+				using System.Linq;
 				public static class DynamicExpression 
 				{{
 					public static double Eval() 
 					{{ 
 						return {0};
-					}} 
+					}}
+				}}
+				public static double Sum(params double[] values)
+				{{
+					return values.Sum();
 				}}";
 
 			Funcs = new Dictionary<string, string>
-				{
-					{ "max", "Math.Max" },
-					{ "min", "Math.Min" },
-					{ "sqrt", "Math.Sqrt" }
-				};
+			{
+				{ "max", "Math.Max" },
+				{ "min", "Math.Min" },
+				{ "sqrt", "Math.Sqrt" },
+				{ "sum", "Sum" }
+			};
 		}
 
 		private string PrepareExpression(string expression)

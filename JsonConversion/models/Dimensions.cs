@@ -1,9 +1,16 @@
-﻿namespace JsonConversion
+﻿using Newtonsoft.Json;
+
+namespace JsonConversion
 {
 	public class Dimensions
 	{
-		public double l { get; set; }
-		public double w { get; set; }
-		public double h { get; set; }
+		[JsonProperty("l")]
+		public double Length { get; set; }
+
+		[JsonProperty("w")]
+		public double Width { get; set; }
+
+		[JsonProperty("h")]
+		public double Height { get; set; }
 	}
 }

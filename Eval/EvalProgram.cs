@@ -14,6 +14,7 @@ namespace EvalTask
 			{
 				input = new StringConverter().ConvertString(input, json);
 			}
+
 			string output = new Evaluator().Evaluate(input).ToString();
 			Console.WriteLine(output, CultureInfo.InvariantCulture);
 		}
