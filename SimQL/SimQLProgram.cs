@@ -135,7 +135,7 @@ namespace SimQLTask
 			{
 				return JObject.Parse(inputMessage);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				return null;
 			}

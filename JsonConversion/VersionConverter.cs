@@ -3,7 +3,7 @@ using EvalTask;
 
 namespace JsonConversion
 {
-	internal class VersionConverter : IConverter
+	internal class VersionConverter
 	{
 		public V3Object Convert(V2Object obj)
 		{
@@ -15,11 +15,11 @@ namespace JsonConversion
 			foreach (var item in obj.Products)
 				result.products.Add(new V3Product
 				{
-					id = long.Parse(item.Key),
-					name = item.Value.Name,
-					price = cacl.PrepateJson(item.Value.Price, obj.constants),
-					count = item.Value.Count,
-					dimensions = GetDimensions(item.Value.size)
+					Id = long.Parse(item.Key),
+					Name = item.Value.Name,
+					Price = cacl.PrepareJson(item.Value.Price, obj.Constants),
+					Count = item.Value.Count,
+					Dimensions = GetDimensions(item.Value.Size)
 				});
 			return result;
 		}

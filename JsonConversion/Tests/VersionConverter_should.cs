@@ -40,10 +40,10 @@ namespace JsonConversion
 				version = "3",
 				products = { new V3Product
 				{
-					id = 1,
-					count = 100,
-					price = 10,
-					name = "product-name"
+					Id = 1,
+					Count = 100,
+					Price = 10,
+					Name = "product-name"
 				}}
 
 			};
@@ -63,24 +63,24 @@ namespace JsonConversion
 				{
 					new V3Product
 					{
-						price = 12,
-						id = 1,
-						count = 100,
-						name = "Pen"
+						Price = 12,
+						Id = 1,
+						Count = 100,
+						Name = "Pen"
 					},
 					new V3Product
 					{
-						id = 2,
-						name = "Pencil",
-						price = 8,
-						count = 1000
+						Id = 2,
+						Name = "Pencil",
+						Price = 8,
+						Count = 1000
 					},
 					new V3Product
 					{
-						id = 3,
-						name = "Box",
-						price = 12.1,
-						count = 50
+						Id = 3,
+						Name = "Box",
+						Price = 12.1,
+						Count = 50
 					},
 				}
 			};

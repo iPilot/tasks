@@ -37,7 +37,7 @@ namespace EvalTask
 	[TestFixture]
 	public class stringConverter_Should
 	{
-		public IStringConverter StringConverter { get; private set; }
+		public StringConverter StringConverter { get; private set; }
 		public string simpleJson = File.ReadAllText(@"C: \Users\User3\Desktop\Новая папка\sapmple.txt");
 
 		[SetUp]

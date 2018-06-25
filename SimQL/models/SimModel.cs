@@ -39,7 +39,7 @@ namespace SimQLTask
 
 		private static bool TryParseQueries(JToken queries, out SimQuery[] parsedQueries)
 		{
-
+			throw new NotImplementedException();
 		}
     }
 }

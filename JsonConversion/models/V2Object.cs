@@ -6,6 +6,6 @@ namespace JsonConversion
 	{
 		public string Version { get; set; }
 		public Dictionary<string, V2Product> Products { get; set; } 
-		public Dictionary<string, string> constants { get; set; }
+		public Dictionary<string, string> Constants { get; set; }
 	}
 }

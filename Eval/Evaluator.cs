@@ -4,12 +4,11 @@ using System.Text;
 
 namespace EvalTask
 {
-	public class Evaluator : IEvaluator
+	public class Evaluator
 	{
 		readonly CodeDomProvider csharpProvider;
 		readonly CompilerParameters compilerParameters;
-		readonly string baseCodeBegin;
-		readonly string baseCodeEnd;
+		readonly string codeFormat;
 
 		public Evaluator()
 		{
@@ -18,9 +17,15 @@ namespace EvalTask
 
 			csharpProvider = CodeDomProvider.CreateProvider("c#");
 
-			baseCodeBegin =
-				"using System; public static class DynamicExpression { public static double Eval() { return \r\n";
-			baseCodeEnd = "\r\n; } }";
+			codeFormat = 
+				@"using System;
+public static class DynamicExpression 
+{
+	public static double Eval() 
+	{ 
+		return {0};
+	} 
+}";
 		}
 
 		public double Evaluate(string expression)
@@ -32,8 +37,8 @@ namespace EvalTask
 			expression = expression.Replace("min", "Math.Min");
 			expression = expression.Replace("sqrt", "Math.Sqrt");
 
-			CompilerResults result = csharpProvider.CompileAssemblyFromSource(compilerParameters,
-				string.Concat(baseCodeBegin, expression, baseCodeEnd));
+			CompilerResults result = csharpProvider
+				.CompileAssemblyFromSource(compilerParameters, string.Format(codeFormat, expression));
 			if (result.Errors.HasErrors)
 			{
 				StringBuilder strB = new StringBuilder();
@@ -42,7 +47,11 @@ namespace EvalTask
 				throw new ArgumentException($"Ошибка в выражении:\r\n{strB}", "expression");
 			}
 
-			return (double)result.CompiledAssembly.GetType("DynamicExpression").GetMethod("Eval").Invoke(null, null);
+			return (double)result
+				.CompiledAssembly
+				.GetType("DynamicExpression")
+				.GetMethod("Eval")
+				.Invoke(null, null);
 		}
 	}
 }

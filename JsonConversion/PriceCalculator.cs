@@ -5,11 +5,11 @@ namespace JsonConversion
 {
 	public class PriceCalculator
 	{
-		private readonly IEvaluator _evaluator;
+		private readonly Evaluator evaluator;
 
-		public PriceCalculator(IEvaluator evaluator)
+		public PriceCalculator(Evaluator evaluator)
 		{
-			_evaluator = evaluator;
+			this.evaluator = evaluator;
 		}
 
 		public void PrepareJson(V3Object v3Object, Dictionary<string, string> constants)
@@ -18,7 +18,7 @@ namespace JsonConversion
 				return;
 			foreach (var product in v3Object.products)
 			{
-				product.price = _evaluator.Evaluate(ChangeSymbols(product.price, constants)).ToString();
+				product.Price = evaluator.Evaluate(ChangeSymbols(product.Price, constants)).ToString();
 			}
 		}
 
