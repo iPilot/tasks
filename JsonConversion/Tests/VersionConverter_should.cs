@@ -37,8 +37,8 @@ namespace JsonConversion
 			var v3obj = new VersionConverter().Convert(v2obj);
 			var expected = new V3Object
 			{
-				version = "3",
-				products = { new V3Product
+				Version = "3",
+				Products = { new V3Product
 				{
 					Id = 1,
 					Count = 100,
@@ -58,8 +58,8 @@ namespace JsonConversion
 			var v3obj = new VersionConverter().Convert(v2obj);
 			var expteted = new V3Object
 			{
-				version = "3",
-				products =
+				Version = "3",
+				Products =
 				{
 					new V3Product
 					{

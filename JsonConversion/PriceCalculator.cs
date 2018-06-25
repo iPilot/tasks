@@ -12,17 +12,12 @@ namespace JsonConversion
 			this.evaluator = evaluator;
 		}
 
-		public void PrepareJson(V3Object v3Object, Dictionary<string, string> constants)
+		public double GetPrice(string expression, Dictionary<string, string> constants)
 		{
-			if (constants == null)
-				return;
-			foreach (var product in v3Object.products)
-			{
-				product.Price = evaluator.Evaluate(ChangeSymbols(product.Price, constants)).ToString();
-			}
+			return evaluator.Evaluate(ReplaceConstants(expression, constants));
 		}
 
-		private string ChangeSymbols(string input, Dictionary<string, string> constants)
+		private string ReplaceConstants(string input, Dictionary<string, string> constants)
 		{
 			foreach (var constant in constants)
 			{

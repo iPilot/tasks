@@ -1,44 +1,58 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Text;
 
 namespace EvalTask
 {
 	public class Evaluator
 	{
-		readonly CodeDomProvider csharpProvider;
-		readonly CompilerParameters compilerParameters;
-		readonly string codeFormat;
+		private readonly Dictionary<string, string> Funcs;
+
+		private readonly CodeDomProvider csharpProvider;
+		private readonly CompilerParameters compilerParameters;
+		private readonly string codeFormat;
 
 		public Evaluator()
 		{
-			compilerParameters = new CompilerParameters {GenerateInMemory = true};
+			compilerParameters = new CompilerParameters { GenerateInMemory = true };
 			compilerParameters.ReferencedAssemblies.Add("mscorlib.dll");
-
 			csharpProvider = CodeDomProvider.CreateProvider("c#");
 
-			codeFormat = 
-				@"using System;
-public static class DynamicExpression 
-{
-	public static double Eval() 
-	{ 
-		return {0};
-	} 
-}";
+			codeFormat = @"
+				using System;
+				public static class DynamicExpression 
+				{{
+					public static double Eval() 
+					{{ 
+						return {0};
+					}} 
+				}}";
+
+			Funcs = new Dictionary<string, string>
+				{
+					{ "max", "Math.Max" },
+					{ "min", "Math.Min" },
+					{ "sqrt", "Math.Sqrt" }
+				};
+		}
+
+		private string PrepareExpression(string expression)
+		{
+			var builder = new StringBuilder(expression)
+				.Replace(',', '.')
+				.Replace(";", ",")
+				.Replace("'", "");
+			foreach (var func in Funcs)
+				builder.Replace(func.Key, func.Value);
+			return builder.ToString();
 		}
 
 		public double Evaluate(string expression)
 		{
-			expression = expression.Replace(',', '.');
-			expression = expression.Replace("'", "");
-			expression = expression.Replace(" ", "");
-			expression = expression.Replace("max", "Math.Max");
-			expression = expression.Replace("min", "Math.Min");
-			expression = expression.Replace("sqrt", "Math.Sqrt");
-
+			var preparedExpression = PrepareExpression(expression);
 			CompilerResults result = csharpProvider
-				.CompileAssemblyFromSource(compilerParameters, string.Format(codeFormat, expression));
+				.CompileAssemblyFromSource(compilerParameters, string.Format(codeFormat, preparedExpression));
 			if (result.Errors.HasErrors)
 			{
 				StringBuilder strB = new StringBuilder();

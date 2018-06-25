@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.IO;
+using System.Reflection;
 
 namespace EvalTask
 {
@@ -27,7 +23,7 @@ namespace EvalTask
 		[TestCase("2.0/0", ExpectedResult = double.PositiveInfinity)]
 		[TestCase("0.0/0", ExpectedResult = double.NaN)]
 		[TestCase("10'000", ExpectedResult = 10000)]
-		[TestCase("max(10, 6)+sqrt(4)", ExpectedResult = 12)]
+		[TestCase("max(10.0;6,0)+sqrt(4)", ExpectedResult = 12)]
 		public double AnswerIs4_WhenSomething(string input)
 		{
 			return Evaluator.Evaluate(input);
@@ -35,24 +31,27 @@ namespace EvalTask
 	}
 
 	[TestFixture]
-	public class stringConverter_Should
+	public class StringConverter_Should
 	{
-		public StringConverter StringConverter { get; private set; }
-		public string simpleJson = File.ReadAllText(@"C: \Users\User3\Desktop\Новая папка\sapmple.txt");
+		private StringConverter StringConverter;
+		private string ProjectPath;
+		private string SampleJson;
 
 		[SetUp]
 		public void SetUp()
 		{
 			StringConverter = new StringConverter();
+			ProjectPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.FullName;
+			SampleJson = File.ReadAllText($"{ProjectPath}\\Tests\\sample.txt");
 		}
 
 
 		[TestCase("a+b", ExpectedResult = "1+2")]
 		[TestCase("a+a+b", ExpectedResult = "1+1+2")]
 		[TestCase("a+a+b+2", ExpectedResult = "1+1+2+2")]
-		public string DoSomething_WhenSomething(string input)
+		public string ReplaceConstantsCorrectly(string input)
 		{
-			return StringConverter.ConvertString(input, simpleJson);
+			return StringConverter.ConvertString(input, SampleJson);
 		}
 	}
 }
