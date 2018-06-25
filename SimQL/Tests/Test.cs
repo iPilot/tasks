@@ -1,9 +1,9 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SimQLTask;
 
 namespace SimQLTask.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class Test
     {
         [Test]
@@ -12,12 +12,6 @@ namespace SimQLTask.Tests
         {
 
         }
-    }
-
-    public class SimModel
-    {
-        public string Data { get; set; }
-        public string[] Queris { get; set; }
     }
 
     public class JsonSearcher

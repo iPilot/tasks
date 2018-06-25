@@ -54,9 +54,8 @@
   <ItemGroup>
     <Compile Include="EvalProgram.cs" />
     <Compile Include="Evaluator.cs" />
-    <Compile Include="Evaluator_Should.cs" />
-    <Compile Include="IEvaluator.cs" />
-    <Compile Include="IStringConverter.cs" />
+    <Compile Include="Tests\Evaluator_Should.cs" />
+    <Compile Include="StringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

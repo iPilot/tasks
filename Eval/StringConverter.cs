@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace EvalTask
 {
-	public interface IStringConverter
-	{
-		string ConvertString(string expression, string json);
-	}
-
-	public class StringConverter : IStringConverter
+	public class StringConverter
 	{
 		public string ConvertString(string expression, string json)
 		{

@@ -1,8 +1,6 @@
-﻿using EvalTask;
-
-namespace JsonConversion
+﻿namespace JsonConversion
 {
-	internal class VersionConverter : IConverter
+	internal class VersionConverter
 	{
 		public V3Object Convert(V2Object obj)
 		{
@@ -20,7 +18,6 @@ namespace JsonConversion
 					count = item.Value.Count
 				});
 			}
-		//	new PriceCalculator(new Evaluator()).PrepateJson(result, obj.constants);
 			return result;
 		}
 	}
