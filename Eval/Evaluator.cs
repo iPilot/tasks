@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EvalTask
@@ -16,7 +17,7 @@ namespace EvalTask
 		public Evaluator()
 		{
 			compilerParameters = new CompilerParameters { GenerateInMemory = true };
-			compilerParameters.ReferencedAssemblies.Add("mscorlib.dll");
+			compilerParameters.ReferencedAssemblies.AddRange(new[] { "mscorlib.dll", "System.Core.dll" });
 			csharpProvider = CodeDomProvider.CreateProvider("c#");
 
 			codeFormat = @"
@@ -28,10 +29,10 @@ namespace EvalTask
 					{{ 
 						return {0};
 					}}
-				}}
-				public static double Sum(params double[] values)
-				{{
-					return values.Sum();
+					public static double Sum(params double[] values)
+					{{
+						return values.Sum();
+					}}
 				}}";
 
 			Funcs = new Dictionary<string, string>
@@ -57,8 +58,9 @@ namespace EvalTask
 		public double Evaluate(string expression)
 		{
 			var preparedExpression = PrepareExpression(expression);
+			var code = string.Format(codeFormat, preparedExpression);
 			CompilerResults result = csharpProvider
-				.CompileAssemblyFromSource(compilerParameters, string.Format(codeFormat, preparedExpression));
+				.CompileAssemblyFromSource(compilerParameters, code );
 			if (result.Errors.HasErrors)
 			{
 				StringBuilder strB = new StringBuilder();
@@ -72,6 +74,11 @@ namespace EvalTask
 				.GetType("DynamicExpression")
 				.GetMethod("Eval")
 				.Invoke(null, null);
+		}
+
+		public static double Sum(params double[] values)
+		{
+			return values.Sum();
 		}
 	}
 }

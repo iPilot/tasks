@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
 using System.IO;
-using System.Reflection; 
+using System.Reflection;
+using FluentAssertions;
 
 namespace EvalTask
 {
@@ -25,7 +26,6 @@ namespace EvalTask
 		[TestCase("0.0/0", ExpectedResult = double.NaN)]
 		[TestCase("10'000", ExpectedResult = 10000)]
 		[TestCase("max(10.0;6,0)+sqrt(4)", ExpectedResult = 12)]
-		[TestCase("12 12")]
 		public double AnswerIs4_WhenSomething(string input)
 		{
 			return Evaluator.Evaluate(input);
@@ -34,8 +34,13 @@ namespace EvalTask
 		[Test]
 		public void ThrowFormatException_WhenIncorrecpInput()
 		{
-			var input = "12 12";
-			Evaluator
+			var input = new[] { "12 12", "   ", "1/0" };
+			foreach (var query in input)
+			{
+				var q = query;
+				Action action = () => Evaluator.Evaluate(q);
+				action.Should().Throw<ArgumentException>();
+			}
 		}
 	}
 
