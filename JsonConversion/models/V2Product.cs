@@ -4,6 +4,7 @@
 	{
 		public string Name { get; set; }
 		public string Price { get; set; }
-		public int Count { get; set; }
+		public long Count { get; set; }
+		public double[] size { get; set; }
 	}
 }

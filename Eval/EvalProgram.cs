@@ -14,8 +14,7 @@ namespace EvalTask
 			{
 				input = new StringConverter().ConvertString(input, json);
 			}
-			var parsedString = input.Replace(',', '.');
-			string output = new Evaluator().Evaluate(parsedString).ToString();
+			string output = new Evaluator().Evaluate(input).ToString();
 			Console.WriteLine(output, CultureInfo.InvariantCulture);
 		}
 

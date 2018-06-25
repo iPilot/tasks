@@ -25,7 +25,12 @@ namespace EvalTask
 
 		public double Evaluate(string expression)
 		{
-			//expression.Replace('\'', )
+			expression = expression.Replace(',', '.');
+			expression = expression.Replace("'", "");
+			expression = expression.Replace(" ", "");
+			expression = expression.Replace("max", "Math.Max");
+			expression = expression.Replace("min", "Math.Min");
+			expression = expression.Replace("sqrt", "Math.Sqrt");
 
 			CompilerResults result = csharpProvider.CompileAssemblyFromSource(compilerParameters,
 				string.Concat(baseCodeBegin, expression, baseCodeEnd));
@@ -40,5 +45,4 @@ namespace EvalTask
 			return (double)result.CompiledAssembly.GetType("DynamicExpression").GetMethod("Eval").Invoke(null, null);
 		}
 	}
-
 }

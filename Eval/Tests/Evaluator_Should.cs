@@ -26,6 +26,8 @@ namespace EvalTask
 		[TestCase("2-5", ExpectedResult = -3)]
 		[TestCase("2.0/0", ExpectedResult = double.PositiveInfinity)]
 		[TestCase("0.0/0", ExpectedResult = double.NaN)]
+		[TestCase("10'000", ExpectedResult = 10000)]
+		[TestCase("max(10, 6)+sqrt(4)", ExpectedResult = 12)]
 		public double AnswerIs4_WhenSomething(string input)
 		{
 			return Evaluator.Evaluate(input);
