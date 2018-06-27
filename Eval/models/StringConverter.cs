@@ -6,7 +6,7 @@ namespace EvalTask
 {
 	public class StringConverter : IExpressionFormatter
 	{
-		protected readonly Dictionary<string, string> Funcs = new Dictionary<string, string>
+		private readonly Dictionary<string, string> Funcs = new Dictionary<string, string>
 			{
 				{ "max", "Math.Max" },
 				{ "min", "Math.Min" },

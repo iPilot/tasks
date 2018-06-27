@@ -9,9 +9,9 @@ namespace EvalTask
 {
 	public class Evaluator : IEvaluator
 	{
-		protected static readonly CodeDomProvider csharpProvider;
-		protected static readonly CompilerParameters compilerParameters;
-		protected static string codeFormat;
+		private static readonly CodeDomProvider csharpProvider;
+		private static readonly CompilerParameters compilerParameters;
+		private static readonly string codeFormat;
 
 		protected IExpressionFormatter formatter;
 
@@ -59,7 +59,7 @@ namespace EvalTask
 				.Invoke(null, null);
 		}
 
-		protected string GetConstantsString(IDictionary<string, double> contants)
+		private string GetConstantsString(IDictionary<string, double> contants)
 		{
 			return string.Join("\n", 
 				contants.Select(c => $"var {c.Key} = {c.Value.ToString(CultureInfo.InvariantCulture)};"));
