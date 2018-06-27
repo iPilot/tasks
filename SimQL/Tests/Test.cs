@@ -10,7 +10,6 @@ namespace SimQLTask.Tests
         [TestCase("")]
         public void SearchTest(string fileName)
         {
-
         }
     }
 

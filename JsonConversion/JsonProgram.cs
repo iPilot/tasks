@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using EvalTask;
 
 namespace JsonConversion
@@ -11,8 +9,11 @@ namespace JsonConversion
 		static void Main()
 		{
 			string json = Console.In.ReadToEnd();
+
 			var v2obj = JsonConvert.DeserializeObject<V2Object>(json);
-			var v3obj = new VersionConverter().Convert(v2obj);
+			var evaluator = new Evaluator(new StringConverter());
+			var v3obj = VersionConverter.Convert(v2obj, evaluator);
+
 			Console.Write(JsonConvert.SerializeObject(v3obj, Formatting.Indented));
 		}
 	}

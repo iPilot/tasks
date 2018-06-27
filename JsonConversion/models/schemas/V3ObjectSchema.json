@@ -1,0 +1,19 @@
+﻿{
+    "title": "v3object",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string",
+            "pattern": "3",
+            "minLength": 1,
+            "maxLength": 1
+        },
+        "products": {
+            "type": "array",
+            "items": { "$ref": "./V3ProductSchema.json#" },
+            "description": "Array of products in v3format"
+        }
+    },
+    "required": [ "version", "products" ],
+    "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+﻿{
+    "title": "v2object",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string",
+            "pattern": "2",
+            "minLength": 1,
+            "maxLength": 1,
+            "description": "Format version"
+        },
+        "products": {
+            "type": "object",
+            "patternProperties": {
+                "^[0-9]{1,18}$": { "$ref": "./V2ProductSchema.json#" }
+            },
+            "description": "Collection of products in v2 format",
+            "additionalProperties": false
+        },
+        "constants": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-z][a-z0-9A-Z]*$": { "type": "number" }
+            },
+            "additionalProperties": false
+        }
+    },
+    "required": [ "version", "products" ],
+    "additionalProperties": false
+}

@@ -7,10 +7,35 @@
 			"price": 12,
 			"count": 100,
 			"dimensions": {
-				l: 131,
-				w: 12, 
-				h: 130
+				"l": 131,
+				"w": 12,
+				"h": 130
 			}
+		},
+		{
+			"id": 2,
+			"name": "another product",
+			"price": 125,
+			"count": 1000
+		},
+		{
+			"id": 3,
+			"name": "third product",
+			"count": 100,
+			"dimensions": {
+				"l": 1,
+				"w": 1,
+				"h": 1
+			}
+		},
+		{
+			"id": 4,
+			"name": "fouth product",
+			"price": 3
+		},
+		{
+			"id": 5,
+			"name": "fifth product"
 		}
 	]
 }

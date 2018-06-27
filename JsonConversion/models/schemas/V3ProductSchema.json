@@ -1,0 +1,31 @@
+{
+    "title": "v3product",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number"
+        },
+        "name": {
+            "type": "string"
+        },
+        "count": {
+            "type": "integer"
+        },
+        "price": {
+            "type": "number"
+        },
+        "dimensions": {
+            "type": "object",
+            "properties": {
+                "l": { "type": "number" },
+                "h": { "type": "number" },
+                "w": { "type": "number" }
+            },
+            "additionalProperties": false,
+            "required": [ "l", "h", "w" ],
+            "description": "Optional array of product sizes, that should contains all 3 sizes"
+        }
+    },
+    "required": [ "id", "name" ],
+    "additionalProperties": false
+}

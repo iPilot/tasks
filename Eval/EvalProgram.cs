@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace EvalTask
@@ -9,16 +11,22 @@ namespace EvalTask
 		{
 			string input = Console.ReadLine();
 			string json = Console.In.ReadToEnd();
-
-			if (!string.IsNullOrWhiteSpace(json))
+			string output;
+			var evaluator = new Evaluator(new StringConverter());
+			try
 			{
-				input = new StringConverter().ConvertString(input, json);
+				var constants = string.IsNullOrWhiteSpace(json)
+					? new Dictionary<string, double>()
+					: JsonConvert.DeserializeObject<Dictionary<string, double>>(json);
+				output = evaluator
+					.Evaluate(input, constants)
+					.ToString(CultureInfo.InvariantCulture);
 			}
-
-			string output = new Evaluator().Evaluate(input).ToString();
-			Console.WriteLine(output, CultureInfo.InvariantCulture);
+			catch
+			{
+				output = "error";
+			}
+			Console.WriteLine(output);
 		}
-
 	}
-
 }

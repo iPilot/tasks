@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using EvalTask;
+﻿using EvalTask;
 
 namespace JsonConversion
 {
@@ -12,19 +11,9 @@ namespace JsonConversion
 			this.evaluator = evaluator;
 		}
 
-		public double GetPrice(string expression, Dictionary<string, string> constants)
+		public double GetPrice(string expression)
 		{
-			return evaluator.Evaluate(ReplaceConstants(expression, constants));
-		}
-
-		private string ReplaceConstants(string input, Dictionary<string, string> constants)
-		{
-			foreach (var constant in constants)
-			{
-				input = input.Replace(constant.Key, constant.Value);
-			}
-
-			return input;
+			return evaluator.Evaluate(expression);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JsonConversion
 {
-	internal class V2Object
+	public class V2Object
 	{
 		[JsonProperty("version")]
 		public string Version { get; set; }
@@ -12,6 +12,6 @@ namespace JsonConversion
 		public Dictionary<string, V2Product> Products { get; set; }
 
 		[JsonProperty("constants")]
-		public Dictionary<string, string> Constants { get; set; }
+		public Dictionary<string, double> Constants { get; set; }
 	}
 }

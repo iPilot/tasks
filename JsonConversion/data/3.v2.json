@@ -1,11 +1,28 @@
 ﻿{
-	'version': '2',
-	'products': {
-		'1': {
-			'name': 'product-name',
-			'price': '12',
-			'count': 100,
-			'size': [12, 130, 131]
+	"version": "2",
+	"products": {
+		"1": {
+			"name": "product-name",
+			"price": "12",
+			"count": 100,
+			"size": [ 12, 130, 131 ]
+		},
+		"2": {
+			"name": "another product",
+			"price": "25*5",
+			"count": 1000
+		},
+		"3": {
+			"name": "third product",
+			"count": 100,
+			"size": [ 1, 1, 1 ]
+		},
+		"4": {
+			"name": "fouth product",
+			"price": "sqrt(9)"
+		},
+		"5": {
+			"name": "fifth product"
 		}
 	}
 }

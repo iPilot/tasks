@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "product name"
+        },
+        "price": {
+            "type": "string",
+            "description": "product price. can be a formula"
+        },
+        "count": {
+            "type": "number",
+            "description": "product count"
+        },
+        "size": {
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 3,
+            "items": { "type": "number" },
+            "description": "product all 3 sizes, if defined"
+        }
+    },
+    "required": [ "name" ]
+}

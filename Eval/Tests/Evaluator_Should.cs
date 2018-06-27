@@ -1,18 +1,29 @@
 ﻿using NUnit.Framework;
 using System;
+using FluentAssertions;
 using System.IO;
 using System.Reflection;
-using FluentAssertions;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace EvalTask
 {
 	[TestFixture]
 	public class Evaluator_Should
 	{
-		public Evaluator Evaluator { get; private set; }
+		private Evaluator evaluator;
+		private StringConverter stringConverter;
+		private Dictionary<string, double> contants;
 
 		[SetUp]
-		public void SetUp() => Evaluator = new Evaluator();
+		public void SetUp()
+		{
+			stringConverter = new StringConverter();
+			evaluator = new Evaluator(stringConverter);
+			var projectPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.FullName;
+			var sampleJson = File.ReadAllText($"{projectPath}\\Tests\\sample.json");
+			contants = JsonConvert.DeserializeObject<Dictionary<string, double>>(sampleJson);
+		}
 
 		[TestCase("2+2", ExpectedResult = 4)]
 		[TestCase("2+2*2", ExpectedResult = 6)]
@@ -28,44 +39,28 @@ namespace EvalTask
 		[TestCase("max(10.0;6,0)+sqrt(4)", ExpectedResult = 12)]
 		public double AnswerIs4_WhenSomething(string input)
 		{
-			return Evaluator.Evaluate(input);
+			return evaluator.Evaluate(input);
 		}
 
 		[Test]
-		public void ThrowFormatException_WhenIncorrecpInput()
+		public void ThrowArgumentException_WhenIncorrecpInput()
 		{
 			var input = new[] { "12 12", "   ", "1/0" };
 			foreach (var query in input)
 			{
 				var q = query;
-				Action action = () => Evaluator.Evaluate(q);
+				Action action = () => evaluator.Evaluate(q);
 				action.Should().Throw<ArgumentException>();
 			}
 		}
-	}
 
-	[TestFixture]
-	public class StringConverter_Should
-	{
-		private StringConverter StringConverter;
-		private string ProjectPath;
-		private string SampleJson;
-
-		[SetUp]
-		public void SetUp()
+		[TestCase("a+b", ExpectedResult = 3)]
+		[TestCase("a+a+b", ExpectedResult = 4)]
+		[TestCase("a+a+b+2", ExpectedResult = 6)]
+		[TestCase("max(a; b)*3+min(a; b)*5-sqrt(50*b)", ExpectedResult = 1)]
+		public double ReplaceConstantsCorrectly(string input)
 		{
-			StringConverter = new StringConverter();
-			ProjectPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.FullName;
-			SampleJson = File.ReadAllText($"{ProjectPath}\\Tests\\sample.txt");
-		}
-
-
-		[TestCase("a+b", ExpectedResult = "1+2")]
-		[TestCase("a+a+b", ExpectedResult = "1+1+2")]
-		[TestCase("a+a+b+2", ExpectedResult = "1+1+2+2")]
-		public string ReplaceConstantsCorrectly(string input)
-		{
-			return StringConverter.ConvertString(input, SampleJson);
+			return evaluator.Evaluate(input, contants);
 		}
 	}
 }
