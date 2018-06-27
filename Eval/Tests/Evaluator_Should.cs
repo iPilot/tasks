@@ -41,6 +41,7 @@ namespace EvalTask
 		[TestCase("sqrt(sqrt(5*5.0)+sqrt(10+6))", ExpectedResult = 3)]
 		[TestCase("sqrt (25.0)", ExpectedResult = 5)]
 		[TestCase("12%", ExpectedResult = 0.12)]
+		[TestCase("1 + 50%", ExpectedResult = 1.5)]
 		public double AnswerIs4_WhenSomething(string input)
 		{
 			return evaluator.Evaluate(input);

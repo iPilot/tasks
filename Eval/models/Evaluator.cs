@@ -9,35 +9,26 @@ namespace EvalTask
 {
 	public class Evaluator : IEvaluator
 	{
-		private static readonly CodeDomProvider csharpProvider;
-		private static readonly CompilerParameters compilerParameters;
-		private static readonly string codeFormat;
+		protected static readonly CodeDomProvider csharpProvider;
+		protected static readonly CompilerParameters compilerParameters;
+		protected static string codeFormat;
 
-		private IExpressionFormatter formatter;
+		protected IExpressionFormatter formatter;
 
 		static Evaluator()
 		{
 			compilerParameters = new CompilerParameters { GenerateInMemory = true };
-			compilerParameters.ReferencedAssemblies.AddRange(new[] 
-			{
-				"mscorlib.dll",
-				"System.Core.dll"
-			});
+			compilerParameters.ReferencedAssemblies.Add("mscorlib.dll");
 			csharpProvider = CodeDomProvider.CreateProvider("c#");
 
 			codeFormat = @"
 				using System;
-				using System.Linq;
 				public static class DynamicExpression 
 				{{
 					public static double Eval() 
 					{{ 
 						{0}
 						return {1};
-					}}
-					public static double SimQL_Sum(params double[] values)
-					{{
-						return values.Sum();
 					}}
 				}}";
 		}
@@ -68,7 +59,7 @@ namespace EvalTask
 				.Invoke(null, null);
 		}
 
-		private string GetConstantsString(IDictionary<string, double> contants)
+		protected string GetConstantsString(IDictionary<string, double> contants)
 		{
 			return string.Join("\n", 
 				contants.Select(c => $"var {c.Key} = {c.Value.ToString(CultureInfo.InvariantCulture)};"));

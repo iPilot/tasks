@@ -6,12 +6,11 @@ namespace EvalTask
 {
 	public class StringConverter : IExpressionFormatter
 	{
-		private readonly Dictionary<string, string> Funcs = new Dictionary<string, string>
+		protected readonly Dictionary<string, string> Funcs = new Dictionary<string, string>
 			{
 				{ "max", "Math.Max" },
 				{ "min", "Math.Min" },
 				{ "sqrt", "Math.Sqrt" },
-				{ "sum", "SimQL_Sum" }
 			};
 
 		public string Format(string expression)

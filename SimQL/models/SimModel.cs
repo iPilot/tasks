@@ -1,19 +1,27 @@
 ﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace SimQLTask
 {
 	public class SimModel
     {
-		public JToken Data { get; }
-        public SimQuery[] Queries { get; }
+		private static Dictionary<string, SimQueryFunc> validFuncs =
+			new Dictionary<string, SimQueryFunc>
+			{
+				{ "min", SimQueryFunc.Min },
+				{ "max", SimQueryFunc.Max },
+				{ "sum", SimQueryFunc.Sum }
+			};
 
-		private SimModel(JToken data, SimQuery[] queries)
+		public JToken Data { get; }
+		public SimQuery[] Queries { get; }
+
+		private SimModel(JToken data, IEnumerable<SimQuery> queries)
 		{
 			Data = data;
-			Queries = queries;
+			Queries = queries.ToArray();
 		}
 
 		public static bool TryParse(string input, out SimModel result)
@@ -22,12 +30,12 @@ namespace SimQLTask
 			{
 				var obj = JObject.Parse(input);
 				var data = obj["data"];
-				if (data == null || !TryParseQueries(obj["queries"], out SimQuery[] queries))
+				if (data == null)
 				{
 					result = null;
 					return false;
 				}
-				result = new SimModel(data, queries);
+				result = new SimModel(data, ParseQueries(obj["queries"]));
 				return true;
 			}
 			catch (Exception)
@@ -37,9 +45,31 @@ namespace SimQLTask
 			}
 		}
 
-		private static bool TryParseQueries(JToken queries, out SimQuery[] parsedQueries)
+		private static IEnumerable<SimQuery> ParseQueries(JToken queries)
 		{
-			throw new NotImplementedException();
+			if (queries == null || queries.Type != JTokenType.Array)
+				throw new ArgumentException("queries");
+			foreach (var item in queries)
+			{
+				var q = item.ToString();
+				var openBr = q.IndexOf('(');
+				var closeBr = q.IndexOf(')');
+				if (openBr == -1 && closeBr == -1)
+				{
+					yield return new SimQuery(q);
+					continue;
+				}
+				if (openBr != -1 && closeBr != -1 && closeBr - openBr > 1 && closeBr == q.Length - 1)
+				{
+					var func = q.Substring(0, openBr);
+					var path = q.Substring(openBr + 1, closeBr - openBr - 1);
+					if (!validFuncs.ContainsKey(func))
+						throw new ArgumentException("queries");
+					yield return new SimQuery(path, validFuncs[func]);
+					continue;
+				}
+				throw new ArgumentException("queries");
+			}
 		}
-    }
+	}
 }

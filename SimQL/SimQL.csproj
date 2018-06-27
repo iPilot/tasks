@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\SimQuery.cs" />
+    <Compile Include="models\SimQueryFunc.cs" />
     <Compile Include="SimQLProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="models\SimModel.cs" />
@@ -77,6 +78,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eval\Eval.csproj">
+      <Project>{11b9188f-6a8a-4f52-8bd7-7195dd5ec7d7}</Project>
+      <Name>Eval</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonConversion\JsonConversion.csproj">
+      <Project>{8934b38c-0de0-446d-97de-ebc842a871f1}</Project>
+      <Name>JsonConversion</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

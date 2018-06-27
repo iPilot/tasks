@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SimQLTask;
 
 namespace SimQLTask.Tests
 {
@@ -12,6 +11,21 @@ namespace SimQLTask.Tests
         {
         }
     }
+
+	[TestFixture]
+	public class SimModel_should
+	{
+		[Test]
+		[TestCase("sum(a.x")]
+		[TestCase("su(a)")]
+		[TestCase("a.x)")]
+		[TestCase("sum)a.x(")]
+		[TestCase("sum(a.x)")]
+		public void ThrownSmth_WhenInvalidQueries(string query)
+		{
+
+		}
+	}
 
     public class JsonSearcher
     {
