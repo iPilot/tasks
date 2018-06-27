@@ -20,7 +20,8 @@ namespace EvalTask
 
 			builder.Replace(',', '.')
 				.Replace(";", ",")
-				.Replace("'", "");
+				.Replace("'", "")
+				.Replace("%", "*0.01");
 
 			foreach (var func in Funcs.OrderByDescending(f => f.Key))
 				builder.Replace(func.Key, func.Value);
