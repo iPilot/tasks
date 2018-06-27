@@ -37,21 +37,22 @@ namespace EvalTask
 		[TestCase("0.0/0", ExpectedResult = double.NaN)]
 		[TestCase("10'000", ExpectedResult = 10000)]
 		[TestCase("max(10.0;6,0)+sqrt(4)", ExpectedResult = 12)]
+		[TestCase("-2*3", ExpectedResult = -6)]
+		[TestCase("sqrt(sqrt(5*5.0)+sqrt(10+6))", ExpectedResult = 3)]
+		[TestCase("sqrt (25.0)", ExpectedResult = 5)]
 		public double AnswerIs4_WhenSomething(string input)
 		{
 			return evaluator.Evaluate(input);
 		}
 
 		[Test]
-		public void ThrowArgumentException_WhenIncorrecpInput()
+		[TestCase("12 12")]
+		[TestCase("     ")]
+		[TestCase(" 1/0 ")]
+		public void ThrowArgumentException_WhenIncorrecpInput(string input)
 		{
-			var input = new[] { "12 12", "   ", "1/0" };
-			foreach (var query in input)
-			{
-				var q = query;
-				Action action = () => evaluator.Evaluate(q);
-				action.Should().Throw<ArgumentException>();
-			}
+			Action action = () => evaluator.Evaluate(input);
+			action.Should().Throw<ArgumentException>();
 		}
 
 		[TestCase("a+b", ExpectedResult = 3)]

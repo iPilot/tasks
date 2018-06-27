@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace EvalTask
 {
@@ -12,10 +8,10 @@ namespace EvalTask
 	{
 		private readonly Dictionary<string, string> Funcs = new Dictionary<string, string>
 			{
-				{ "max(", "Math.Max(" },
-				{ "min(", "Math.Min(" },
-				{ "sqrt(", "Math.Sqrt(" },
-				{ "sum(", "Sum(" }
+				{ "max", "Math.Max" },
+				{ "min", "Math.Min" },
+				{ "sqrt", "Math.Sqrt" },
+				{ "sum", "SimQL_Sum" }
 			};
 
 		public string Format(string expression)

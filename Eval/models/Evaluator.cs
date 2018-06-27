@@ -35,7 +35,7 @@ namespace EvalTask
 						{0}
 						return {1};
 					}}
-					public static double Sum(params double[] values)
+					public static double SimQL_Sum(params double[] values)
 					{{
 						return values.Sum();
 					}}

@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvalProgram.cs" />
-    <Compile Include="models\Formula.cs" />
     <Compile Include="models\Evaluator.cs" />
     <Compile Include="models\IEvaluator.cs" />
     <Compile Include="models\IExpressionFormatter.cs" />
