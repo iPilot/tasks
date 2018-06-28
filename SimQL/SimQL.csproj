@@ -67,11 +67,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="models\SimModel.cs" />
     <Compile Include="SimQueryExecutor.cs" />
-    <Compile Include="Tests\Test.cs" />
+    <Compile Include="Tests\SimModel_should.cs" />
+    <Compile Include="Tests\SimQueryExecutor_should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Tests\data\2.out" />
+    <None Include="Tests\data\3.out" />
+    <None Include="Tests\data\1.out" />
+    <None Include="Tests\data\3.in" />
+    <None Include="Tests\data\2.in" />
+    <None Include="Tests\data\1.in" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -87,7 +94,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tests\samples.txt" />
+    <None Include="models\SimQLSchema.json" />
+    <Content Include="Tests\data\samples.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -96,6 +104,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Tests_4data_43_1in__JSONSchema="..\..\models\SimQLSchema.json#" Tests_4data_42_1in__JSONSchema="..\..\models\SimQLSchema.json#" Tests_4data_41_1in__JSONSchema="..\..\models\SimQLSchema.json#" models_4SimQLSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" />
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

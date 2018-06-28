@@ -1,0 +1,22 @@
+﻿{
+    "title": "SimQL",
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-z0-9A-Z]+$": {
+                }
+            },
+            "additionalProperties": false
+        },
+        "queries": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": ["data", "queries"]
+}

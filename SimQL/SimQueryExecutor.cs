@@ -52,7 +52,7 @@ namespace SimQLTask
 					found = found || next != null;
 					result = result.Concat(next ?? new double[0]);
 				}
-				return found ? result : null;
+				return found || index == path.Length ? result : null;
 			}
 			else if ((data.Type == JTokenType.Float || data.Type == JTokenType.Integer) && index == path.Length)
 				return new[] { data.Value<double>() };

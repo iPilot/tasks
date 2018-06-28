@@ -1,0 +1,5 @@
+﻿sum(empty) = 0
+sum(a.b) = 40
+sum(a.c) = 10
+sum(a.d) = 500
+sum(x) = 0.6
