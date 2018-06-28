@@ -1,37 +1,28 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimQLTask.Tests
 {
 	[TestFixture]
-	public class Test
+	public class SimQueryExecutor_should
 	{
-		[Test]
-		[TestCase("")]
-		public void SearchTest(string fileName)
-		{
-		}
-	}
-
-	[TestFixture]
-	public class SimModel_should
-	{
-		[Test]
-		[TestCase("sum(a.x")]
-		[TestCase("su(a)")]
-		[TestCase("a.x)")]
-		[TestCase("sum)a.x(")]
-		[TestCase("sum(a.x)")]
-		public void ThrownSmth_WhenInvalidQueries(string query)
+		[SetUp]
+		public void SetUp()
 		{
 
 		}
-	}
 
-	public class JsonSearcher
-	{
-		public string[] Search()
+		[Test]
+		[TestCaseSource("GetCases")]
+		public void Work_Correctly(string query)
 		{
-			return new string[0];
+
+		}
+
+		public static IEnumerable<string> GetCases()
+		{
+			return Enumerable.Empty<string>();
 		}
 	}
 }

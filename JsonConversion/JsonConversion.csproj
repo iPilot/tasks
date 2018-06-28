@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="JsonProgram.cs" />
     <Compile Include="models\Dimensions.cs" />
-    <Compile Include="PriceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="models\V2Object.cs" />
     <Compile Include="models\V2Product.cs" />

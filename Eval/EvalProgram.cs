@@ -2,15 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 
 namespace EvalTask
 {
 	class EvalProgram
 	{
+		private const string errorString = "error";
+
 		static void Main(string[] args)
 		{
-			string input = Console.ReadLine();
-			string json = Console.In.ReadToEnd();
+			var reader = args.Length == 0 ? Console.In : new StreamReader(args[0]);
+			string input = reader.ReadLine();
+			string json = reader.ReadToEnd();
 			string output;
 			var evaluator = new Evaluator(new StringConverter());
 			try
@@ -24,7 +28,7 @@ namespace EvalTask
 			}
 			catch
 			{
-				output = "error";
+				output = errorString;
 			}
 			Console.WriteLine(output);
 		}
