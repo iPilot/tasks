@@ -3,10 +3,7 @@
     "type": "object",
     "properties": {
         "version": {
-            "type": "string",
-            "pattern": "2",
-            "minLength": 1,
-            "maxLength": 1,
+            "enum" : ["2"],
             "description": "Format version"
         },
         "products": {
