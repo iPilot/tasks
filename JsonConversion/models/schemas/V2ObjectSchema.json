@@ -19,7 +19,8 @@
             "patternProperties": {
                 "^[a-z][a-z0-9A-Z]*$": { "type": "number" }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "Contants for replace in price formula"
         }
     },
     "required": [ "version", "products" ],

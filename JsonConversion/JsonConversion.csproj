@@ -88,6 +88,7 @@
     <None Include="models\schemas\V2ProductSchema.json" />
     <None Include="models\schemas\V3ObjectSchema.json" />
     <None Include="models\schemas\V2ObjectSchema.json" />
+    <None Include="models\schemas\V3ProductDimensions.json" />
     <None Include="models\schemas\V3ProductSchema.json" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -109,7 +110,7 @@
   </Target>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties data_42_1v2_1json__JSONSchema="..\models\schemas\V2ObjectSchema.json#" models_4schemas_4V3ProductSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" models_4schemas_4V3ObjectSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" models_4schemas_4V2ProductSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" data_41_1v3_1json__JSONSchema="..\models\schemas\V3ObjectSchema.json#" data_41_1v2_1json__JSONSchema="..\models\schemas\V2ObjectSchema.json" data_43_1v2_1json__JSONSchema="..\models\V2ObjectSchema.json" data_43_1v3_1json__JSONSchema="..\models\schemas\V3ObjectSchema.json" />
+      <UserProperties data_42_1v3_1json__JSONSchema="..\models\schemas\V3ObjectSchema.json#" models_4schemas_4V2ObjectSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" data_42_1v2_1json__JSONSchema="..\models\schemas\V2ObjectSchema.json#" models_4schemas_4V3ProductSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" models_4schemas_4V3ObjectSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" models_4schemas_4V2ProductSchema_1json__JSONSchema="http://json-schema.org/draft-04/schema" data_41_1v3_1json__JSONSchema="..\models\schemas\V3ObjectSchema.json#" data_41_1v2_1json__JSONSchema="..\models\schemas\V2ObjectSchema.json#" data_43_1v2_1json__JSONSchema="..\models\schemas\V2ObjectSchema.json#" data_43_1v3_1json__JSONSchema="..\models\schemas\V3ObjectSchema.json" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
 			"id": 1,
 			"name": "product-name",
 			"price": 10,
-			"count": 100
+            "count": 100
 		}
 	]
 }

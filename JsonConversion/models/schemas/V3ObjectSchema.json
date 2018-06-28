@@ -9,7 +9,7 @@
         "products": {
             "type": "array",
             "items": { "$ref": "./V3ProductSchema.json#" },
-            "description": "Array of products in v3format"
+            "description": "Array of products in v3 format"
         }
     },
     "required": [ "version", "products" ],

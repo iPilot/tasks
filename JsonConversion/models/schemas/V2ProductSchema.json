@@ -3,22 +3,22 @@
     "properties": {
         "name": {
             "type": "string",
-            "description": "product name"
+            "description": "Product name"
         },
         "price": {
             "type": "string",
-            "description": "product price. can be a formula"
+            "description": "Product price. Can be a formula."
         },
         "count": {
             "type": "number",
-            "description": "product count"
+            "description": "Product count"
         },
         "size": {
             "type": "array",
             "maxItems": 3,
             "minItems": 3,
             "items": { "type": "number" },
-            "description": "product all 3 sizes, if defined"
+            "description": "Product all 3 sizes, if defined."
         }
     },
     "required": [ "name" ]
