@@ -1,25 +1,25 @@
 {
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string",
-            "description": "Product name"
-        },
-        "price": {
-            "type": "string",
-            "description": "Product price. Can be a formula."
-        },
-        "count": {
-            "type": "number",
-            "description": "Product count"
-        },
-        "size": {
-            "type": "array",
-            "maxItems": 3,
-            "minItems": 3,
-            "items": { "type": "number" },
-            "description": "Product all 3 sizes, if defined."
-        }
-    },
-    "required": [ "name" ]
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Product name"
+		},
+		"price": {
+			"type": "string",
+			"description": "Product price. Can be a formula."
+		},
+		"count": {
+			"type": "number",
+			"description": "Product count"
+		},
+		"size": {
+			"type": "array",
+			"maxItems": 3,
+			"minItems": 3,
+			"items": { "type": "number" },
+			"description": "Product all 3 sizes, if defined."
+		}
+	},
+	"required": [ "name" ]
 }

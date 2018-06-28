@@ -1,28 +1,28 @@
 ﻿{
-    "title": "v2object",
-    "type": "object",
-    "properties": {
-        "version": {
-            "enum" : ["2"],
-            "description": "Format version"
-        },
-        "products": {
-            "type": "object",
-            "patternProperties": {
-                "^[0-9]{1,18}$": { "$ref": "./V2ProductSchema.json#" }
-            },
-            "description": "Collection of products in v2 format",
-            "additionalProperties": false
-        },
-        "constants": {
-            "type": "object",
-            "patternProperties": {
-                "^[a-z][a-z0-9A-Z]*$": { "type": "number" }
-            },
-            "additionalProperties": false,
-            "description": "Contants for replace in price formula"
-        }
-    },
-    "required": [ "version", "products" ],
-    "additionalProperties": false
+	"title": "v2object",
+	"type": "object",
+	"properties": {
+		"version": {
+			"enum" : ["2"],
+			"description": "Format version"
+		},
+		"products": {
+			"type": "object",
+			"patternProperties": {
+				"^[0-9]{1,18}$": { "$ref": "./V2ProductSchema.json#" }
+			},
+			"description": "Collection of products in v2 format",
+			"additionalProperties": false
+		},
+		"constants": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-z][a-z0-9A-Z]*$": { "type": "number" }
+			},
+			"additionalProperties": false,
+			"description": "Contants for replace in price formula"
+		}
+	},
+	"required": [ "version", "products" ],
+	"additionalProperties": false
 }

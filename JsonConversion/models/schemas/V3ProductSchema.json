@@ -1,23 +1,23 @@
 {
-    "title": "v3product",
-    "type": "object",
-    "properties": {
-        "id": {
-            "type": "integer"
-        },
-        "name": {
-            "type": "string"
-        },
-        "count": {
-            "type": "integer"
-        },
-        "price": {
-            "type": "number"
-        },
-        "dimensions": {
-            "$ref": "./V3ProductDimensions.json#"
-        }
-    },
-    "required": [ "id", "name" ],
-    "additionalProperties": false
+	"title": "v3product",
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "integer"
+		},
+		"name": {
+			"type": "string"
+		},
+		"count": {
+			"type": "integer"
+		},
+		"price": {
+			"type": "number"
+		},
+		"dimensions": {
+			"$ref": "./V3ProductDimensions.json#"
+		}
+	},
+	"required": [ "id", "name" ],
+	"additionalProperties": false
 }

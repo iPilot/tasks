@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SimQLTask
 {
 	public class SimModel
-    {
+	{
 		private static Dictionary<string, SimQueryFunc> validFuncs =
 			new Dictionary<string, SimQueryFunc>
 			{

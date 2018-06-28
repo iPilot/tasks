@@ -1,17 +1,17 @@
 ﻿{
-    "title": "v3object",
-    "type": "object",
-    "properties": {
-        "version": {
-            "enum": [ "3" ],
-            "description": "Format version"
-        },
-        "products": {
-            "type": "array",
-            "items": { "$ref": "./V3ProductSchema.json#" },
-            "description": "Array of products in v3 format"
-        }
-    },
-    "required": [ "version", "products" ],
-    "additionalProperties": false
+	"title": "v3object",
+	"type": "object",
+	"properties": {
+		"version": {
+			"enum": [ "3" ],
+			"description": "Format version"
+		},
+		"products": {
+			"type": "array",
+			"items": { "$ref": "./V3ProductSchema.json#" },
+			"description": "Array of products in v3 format"
+		}
+	},
+	"required": [ "version", "products" ],
+	"additionalProperties": false
 }

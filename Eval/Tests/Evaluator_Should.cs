@@ -31,7 +31,7 @@ namespace EvalTask
 		[TestCase("3.5*3", ExpectedResult = 10.5)]
 		[TestCase("2/2", ExpectedResult = 1)]
 		[TestCase("2 + 2", ExpectedResult = 4)]
-		[TestCase("2            + 2", ExpectedResult = 4)]
+		[TestCase("2			+ 2", ExpectedResult = 4)]
 		[TestCase("2-5", ExpectedResult = -3)]
 		[TestCase("2.0/0", ExpectedResult = double.PositiveInfinity)]
 		[TestCase("0.0/0", ExpectedResult = double.NaN)]
@@ -49,7 +49,7 @@ namespace EvalTask
 
 		[Test]
 		[TestCase("12 12")]
-		[TestCase("     ")]
+		[TestCase("	 ")]
 		[TestCase(" 1/0 ")]
 		public void ThrowArgumentException_WhenIncorrecpInput(string input)
 		{
