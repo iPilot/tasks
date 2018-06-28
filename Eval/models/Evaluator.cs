@@ -30,6 +30,18 @@ namespace EvalTask
 						{0}
 						return {1};
 					}}
+					public static double min(double a, double b)
+					{{
+						return Math.Min(a, b);
+					}}
+					public static double max(double a, double b)
+					{{
+						return Math.Max(a, b);
+					}}
+					public static double sqrt(double a)
+					{{
+						return Math.Sqrt(a);
+					}}
 				}}";
 		}
 
@@ -70,4 +82,16 @@ namespace EvalTask
 			return Evaluate(expression, new Dictionary<string, double>());
 		}
 	}
+
+				public static class DynamicExpression 
+				{
+					public static double Eval() 
+					{
+						
+						return 0;
+					}
+					public static double min(double a, double b) => Math.Min(a, b);
+					public static double max(double a, double b) => Math.Max(a, b);
+					public static double sqrt(double a) => Math.Sqrt(a);
+				}
 }
